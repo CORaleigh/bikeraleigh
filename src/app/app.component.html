@@ -1,3 +1,39 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <ion-menu (ionWillOpen)="menuOpened($event)">
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Nearby</ion-title>
+          </ion-toolbar>
+          <ion-toolbar color="dark">
+
+          <ion-segment (ionChange)="segmentChanged($event)" color="primary">
+              <ion-segment-button [value]="{'layer': 'Bike Shops', 'fields': ['LABEL', 'ADDRESS']}" checked>
+                <ion-label>Shops</ion-label>
+              </ion-segment-button>
+              <ion-segment-button  [value]="{'layer': 'Parking', 'fields': ['ADDRESS']}" >
+                <ion-label>Parking</ion-label>
+              </ion-segment-button>
+              <ion-segment-button [value]="{'layer': 'Trailheads', 'fields': ['TRAILNAME', 'ACCESS_']}">
+                  <ion-label>Greenways</ion-label>
+                </ion-segment-button>
+            </ion-segment>  
+          </ion-toolbar>
+        
+        </ion-header>
+    
+        <ion-content>
+
+              <ion-list>
+                  <ion-item *ngFor="let item of listitems" (click)="zoomTo(item)">   
+                        <ion-label text-wrap>
+                          <p *ngFor="let field of activeSegment.fields">
+                              {{item.attributes[field]}}
+                          </p>
+                        </ion-label>
+                    <ion-note slot="end" color="primary"> {{item.attributes.distance |  number:'1.0-1'}} mi</ion-note>
+                  </ion-item>
+                </ion-list>              
+        </ion-content>
+      </ion-menu>  
+  <ion-router-outlet main></ion-router-outlet>
 </ion-app>

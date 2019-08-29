@@ -9,3 +9,18 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+.my-custom-modal-css .modal-wrapper {
+    height: 75%;
+    top: 25%;
+    position: absolute; 
+    display: block;  
+ }
+
+.segment-button-has-label {
+    color: #86888f !important; // here, instead of "red" you can use sass variable if it was already defined
+}
+
+.segment-button-has-label.segment-button-checked {
+    color: white !important;
+}

@@ -1,0 +1,24 @@
+<ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="shops">
+      <ion-label>Shops</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="parking">
+      <ion-label>Parking</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="greenways">
+        <ion-label>Greenways</ion-label>
+      </ion-segment-button>
+  </ion-segment>
+<ion-list>
+    <ion-list-header>
+      Navigate
+    </ion-list-header>
+    <ion-menu-toggle auto-hide="false">
+      <ion-item button>
+        <ion-icon slot="start" name='home'></ion-icon>
+        <ion-label>
+          Home
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+  </ion-list>
