@@ -24,3 +24,23 @@
 .segment-button-has-label.segment-button-checked {
     color: white !important;
 }
+
+.esri-popup__content {
+    z-index: 10000 !important;
+}
+
+
+@font-face {
+    font-family: 'Typeold';
+    src:  url('assets/21d6eca2-bec8-4a45-8112-35d4f0f43120.woff2') format('woff2'),
+        url('assets/51821ed1-a703-4278-824b-10fb307e2fe8.woff2') format('woff2'),
+        url('assets/cc61343c-23a3-4b4a-baa4-8271b4d94d96.woff2') format('woff2')        
+  }
+
+* {
+    font-family: "Typold W05",sans-serif;;
+}
+body {
+    padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+    padding-top: env(safe-area-inset-top); /* iOS 11.2 */
+    }

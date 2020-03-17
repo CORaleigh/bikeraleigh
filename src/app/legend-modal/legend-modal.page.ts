@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { loadModules } from 'esri-loader';
 
@@ -8,9 +8,9 @@ import { loadModules } from 'esri-loader';
   templateUrl: './legend-modal.page.html',
   styleUrls: ['./legend-modal.page.scss'],
 })
-export class LegendModalPage implements OnInit {
+export class LegendModalPage implements OnInit, OnDestroy {
 
-
+  legend = null;
   constructor(public modalController:ModalController, public navParams: NavParams) { }
   @ViewChild('legend', null) layersEl: ElementRef;
 
@@ -20,7 +20,7 @@ export class LegendModalPage implements OnInit {
   async getGeo() {
     const [Legend]:any = await loadModules(['esri/widgets/Legend'])
     .catch(err => { console.error("ArcGIS: ", err)});
-        const gallery= new Legend({
+        this.legend = new Legend({
           container: this.layersEl.nativeElement,
           view: this.navParams.get('view')
         })
@@ -28,6 +28,10 @@ export class LegendModalPage implements OnInit {
 
   ngOnInit() {
     this.getGeo();
+  }
+  ngOnDestroy() {
+    this.legend.destroy();
+    this.legend = null;
   }
 
 }

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
@@ -14,17 +13,15 @@ import { LayerListModalPageModule } from './layer-list-modal/layer-list-modal.mo
 import { LayerListModalPage } from './layer-list-modal/layer-list-modal.page';
 import { LegendModalPageModule } from './legend-modal/legend-modal.module';
 import { LegendModalPage } from './legend-modal/legend-modal.page';
-import { NearbyListComponent } from './nearby-list/nearby-list.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, NearbyListComponent],
+  declarations: [AppComponent],
   entryComponents: [BasemapModalPage, LayerListModalPage, LegendModalPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BasemapModalPageModule, LayerListModalPageModule, LegendModalPageModule],
   providers: [
     StatusBar,
-    SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

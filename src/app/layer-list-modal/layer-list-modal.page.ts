@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { loadModules } from 'esri-loader';
 
@@ -7,8 +7,8 @@ import { loadModules } from 'esri-loader';
   templateUrl: './layer-list-modal.page.html',
   styleUrls: ['./layer-list-modal.page.scss'],
 })
-export class LayerListModalPage implements OnInit {
-
+export class LayerListModalPage implements OnInit, OnDestroy {
+  layerlist = null;
   constructor(public modalController:ModalController, public navParams: NavParams) { }
   @ViewChild('layers', null) layersEl: ElementRef;
 
@@ -18,7 +18,7 @@ export class LayerListModalPage implements OnInit {
   async getGeo() {
     const [LayerList]:any = await loadModules(['esri/widgets/LayerList'])
     .catch(err => { console.error("ArcGIS: ", err)});
-        const gallery= new LayerList({
+       this.layerlist = new LayerList({
           container: this.layersEl.nativeElement,
           view: this.navParams.get('view')
         })
@@ -26,6 +26,11 @@ export class LayerListModalPage implements OnInit {
 
   ngOnInit() {
     this.getGeo();
+  }
+
+  ngOnDestroy() {
+    this.layerlist.destroy();
+    this.layerlist = null;
   }
 
 }

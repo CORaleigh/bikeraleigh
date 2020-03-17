@@ -1,4 +1,0 @@
-+ @angular-devkit/architect@0.13.9
-updated 1 package and audited 23239 packages in 4.776s
-found 151 high severity vulnerabilities
-  run `npm audit fix` to fix them, or `npm audit` for details
